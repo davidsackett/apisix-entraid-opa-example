@@ -1,0 +1,22 @@
+routes:
+  - id: example-route
+    uri: /anything
+    upstream:
+      nodes:
+        "backend:80": 1
+      type: roundrobin
+    plugins:
+      openid-connect:
+        client_id: "${{CLIENT_ID}}"
+        client_secret: "${{CLIENT_SECRET}}"
+        discovery: "https://login.microsoftonline.com/${{TENANT_ID}}/v2.0/.well-known/openid-configuration"
+        scope: "openid"
+        redirect_uri: "http://localhost:9080/anything/callback"
+        bearer_only: true
+        use_jwks: true
+        set_userinfo_header": true
+      opa:
+        host: "http://opa:8181"
+        policy: "httpapi/authz"
+
+#END

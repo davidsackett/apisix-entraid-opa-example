@@ -1,0 +1,17 @@
+apisix:
+  node_listen:
+    - port: 9080
+  deployment:
+    role: data_plane
+    role_data_plane:
+      config_provider: yaml
+
+deployment:
+  role: data_plane
+  role_data_plane:
+    config_provider: yaml
+  admin:
+    admin_key:
+      - name: "admin"
+        key: edd1c9f034335f136f87ad84b625c8f1
+        role: admin
